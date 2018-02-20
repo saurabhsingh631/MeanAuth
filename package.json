@@ -1,0 +1,22 @@
+{
+  "name": "meanauth",
+  "version": "1.0.0",
+  "description": "mean stack auth app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "jsonwebtoken": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "saurabh singh",
+  "license": "ISC"
+}
