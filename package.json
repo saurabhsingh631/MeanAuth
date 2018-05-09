@@ -8,14 +8,15 @@
     "start": "node app"
   },
   "dependencies": {
-    "express": "*",
+    "bcryptjs": "*",
     "body-parser": "*",
     "cors": "*",
-    "mongoose": "*",
-    "bcryptjs": "*",
+    "express": "*",
     "jsonwebtoken": "*",
+    "mongoose": "*",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "socket.io": "^2.1.0"
   },
   "author": "saurabh singh",
   "license": "ISC"

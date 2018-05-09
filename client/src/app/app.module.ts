@@ -16,13 +16,13 @@ import {FlashMessagesModule} from "angular2-flash-messages";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {AuthService} from "./services/auth.service";
 import {AuthGuard, AuthGuardOne} from "./guards/auth.guard";
-
+import { ChatComponent } from './component/chat/chat.component';
+import {ChatService} from './services/chat.service'
 const appRoot : Routes = [
   {path: "", component : HomeComponent},
-  {path: "login", component : LoginComponent,canActivate:[AuthGuardOne]},
-  {path: "register", component : RegisterComponent, canActivate:[AuthGuardOne]},
   {path: "dashboard", component : DashboardComponent, canActivate:[AuthGuard]},
-  {path: "profile", component : ProfileComponent,canActivate:[AuthGuard]}
+  {path: "profile", component : ProfileComponent,canActivate:[AuthGuard]},
+  {path: "chat", component : ChatComponent}
 ]
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ const appRoot : Routes = [
     LoginComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +42,7 @@ const appRoot : Routes = [
     FlashMessagesModule,
     RouterModule.forRoot(appRoot)
   ],
-  providers: [ValidateService, FlashMessagesService, AuthService, AuthGuard, AuthGuardOne],
+  providers: [ValidateService, FlashMessagesService, AuthService, AuthGuard, AuthGuardOne, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

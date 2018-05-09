@@ -1,7 +1,13 @@
-<main role="main" class="container">
-    <div class="jumbotron">
-      <h1>Navbar example</h1>
-      <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
-      <a class="btn btn-lg btn-primary" [routerLink]="['/register']" role="button">Register &raquo;</a>
-    </div>
+<div class="row">
+  <main role="main" class="col-sm-6">
+      <div class="jumbotron">
+        <h1>Navbar example</h1>
+        <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
+        <button class="btn btn-lg btn-primary"  role="button" (click) = "changeForm()">{{currentForm}} &raquo;</button>
+      </div>
   </main>
+  <main role="main" class="col-sm-6">
+    <app-login *ngIf="currentForm=='Register'"></app-login>
+    <app-register *ngIf="currentForm=='Login'"></app-register>
+  </main>
+</div>

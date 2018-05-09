@@ -12,19 +12,26 @@ export class AuthService {
   registerUser(user) {
     let headers = new Headers();
     headers.append("Content-Type","application/json");
-    return this.http.post("users/register",user,{headers:headers}).map(res=>res.json());
+    return this.http.post("http://localhost:8090/users/register",user,{headers:headers}).map(res=>res.json());
   }
   loginUser(user) {
     let headers = new Headers();
     headers.append("Content-Type","application/json");
-    return this.http.post("users/authentication",user,{headers:headers}).map(res=>res.json());
+    return this.http.post("http://localhost:8090/users/authentication",user,{headers:headers}).map(res=>res.json());
   }
   getProfile() {
     let headers = new Headers();
     this.loadToken();
     headers.append("Authorization",this.authToken);
     headers.append("Content-Type","application/json");
-    return this.http.get("users/profile",{headers:headers}).map(res=>res.json());
+    return this.http.get("http://localhost:8090/users/profile",{headers:headers}).map(res=>res.json());
+  }
+  getUser(id) {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append("Authorization",this.authToken);
+    headers.append("Content-Type","application/json");
+    return this.http.get("http://localhost:8090/users/getUser",{headers:headers,params:{id:id}}).map(res=>res.json());
   }
   storeUserdata(token,user) {
     localStorage.setItem("id_token",token);

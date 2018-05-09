@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
       cssClass : "alert-success",
       timeot : 3000
     });
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/"]);
     return false;
   }
 }

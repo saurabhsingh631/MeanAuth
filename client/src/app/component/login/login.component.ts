@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/profile']);
       } else {
         this.flashMessage.show("Login error!!!",{cssClass : 'alert-danger', timeout:"3000"});
-        this.router.navigate(['/login']);
       }
     })
   }

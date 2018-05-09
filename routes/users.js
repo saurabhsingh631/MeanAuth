@@ -20,7 +20,15 @@ router.post("/register",function(req,res, next) {
         }
     })
 });
-
+router.get("/getUser",function(req,res, next) {
+    User.getUserById(req.query.id,function(err,user){
+        if(err) {
+            res.json({"success":false,msg:"failed"});
+        } else {
+            res.json({"success":true, user:user});
+        }
+    })
+});
 router.post("/authentication",function(req,res, next) {
     const username = req.body.username;
     const password = req.body.password;

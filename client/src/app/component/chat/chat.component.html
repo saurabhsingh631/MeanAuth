@@ -1,0 +1,89 @@
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/45e03a14ce.js"></script>
+<div class="main_section">
+  <div class="container">
+    <div class="chat_container row">
+      <div class="col-sm-3 chat_sidebar">
+        <div class="row">
+          <div id="custom-search-input">
+            <div class="input-group col-md-12">
+              <input type="text" class="search-query form-control" placeholder="Conversation"[(ngModel)] = 'query' (input)="filterItem()" />
+              <button class="btn btn-danger" type="button">
+                <span class=" glyphicon glyphicon-search"></span>
+              </button>
+            </div>
+          </div>
+          <div class="dropdown all_conversation">
+            <button class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-weixin" aria-hidden="true"></i>
+              All Conversations
+              <span class="caret float-right"></span>
+            </button>
+          </div>
+          <div class="member_list">
+            <ul class="list-unstyled">
+              <ng-container *ngFor="let user of users">
+                <li [ngClass]="user._id == chat_to_id ? 'left clearfix active' : 'left clearfix'"    (click)= "getMessages(user._id)" *ngIf="user._id != chat_from_id">
+                  <span class="rounded-circle name float-left">
+                    {{user.name|slice:0:1}}
+                  </span>
+                  <div class="chat-body clearfix">
+                    <div class="header_sec">
+                      <strong class="primary-font">{{user.name}}</strong>
+                      <strong class="primary-font float-right">Time</strong>
+                    </div>
+                    <div class="contact_sec">
+                      <strong class="primary-font">{{user.email}}</strong>
+                    </div>
+                  </div>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--chat_sidebar-->
+
+
+      <div class="col-sm-9 message_section">
+        <div class="row">
+          <div class="new_message_head">
+            <div class="float-left">
+              {{currentusername}}
+            </div>
+          </div>
+          <!--new_message_head-->
+
+          <div class="chat_area" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+            <ul class="list-unstyled">
+              <li *ngFor="let msg of msgs" [ngClass]="msg.from_user_id !=chat_from_id ? 'left clearfix' : 'left clearfix admin_chat'">
+                  <span [ngClass]="msg.from_user_id !=chat_from_id ? 'chat-img1 float-left' : 'chat-img1 float-right'">
+                    <span class="rounded-circle name" *ngIf="msg.from_user_id !=chat_from_id">{{currentusername|slice:0:1}}</span>
+                    <span class="rounded-circle name" *ngIf="msg.from_user_id ==chat_from_id">{{this.current_user.name|slice:0:1}}</span>
+                    </span>
+                    <div class="chat-body1 clearfix">
+                        <p>{{msg.msg}}</p>
+                        <div [ngClass]="msg.from_user_id !=chat_from_id ? 'chat_time float-left' : 'chat_time float-right'">{{msg.time | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+                    </div>
+              </li>
+            </ul>
+          </div>
+          <!--chat_area-->
+          <div class="message_write">
+            <textarea class="form-control" (keydown)="keyDownFunction($event)" placeholder="type a message" [(ngModel)]="textmessage"></textarea>
+            <div class="clearfix"></div>
+            <div class="chat_bottom">
+              <a href="#" class="float-left upload_btn">
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                Add Files</a>
+              <button (click) = "sendMessage()" class="float-right btn btn-success">
+                Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--message_section-->
+    </div>
+  </div>
+</div>
